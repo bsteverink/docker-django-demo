@@ -66,11 +66,11 @@ docker-compose run webapp bash
 
 - Create environment API keys in Rancher
 
-- Make sure rancher-compose is installed en configured on the Jenkins server
+- Make sure rancher-compose is installed on the Jenkins server
 
 - Add the Jenkins Github service plugin on Github and provide the Jenkins webhook URL for sending triggers
 
-- Create a Jenkins pipline
+- Create a Jenkins pipeline, including API credentials (credentialsId=rancher-server)
 
 - Push to the Jenkins branch to trigger build and deploy:
 

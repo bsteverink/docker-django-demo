@@ -1,0 +1,35 @@
+DOCKERFILE
+
+- Build docker image:
+
+docker build -t bsteverink/docker-demo .
+
+
+- Start the image in interactive console mode
+
+docker run -it -v ${PWD}:/code/ -p 8000:8000 bsteverink/docker-demo bash
+
+
+- Create Django project
+
+mkdir app && django-admin startproject dockerdemo app/
+
+- Run migrations & create superuser
+
+python app/manage.py migrate
+python app/manage.py createsuperuser
+
+
+- Run development server
+
+python app/manage.py runserver 0.0.0.0:8000
+
+
+- Run docker image:
+
+docker run -v ${PWD}:/code/ -p 8000:8000 bsteverink/docker-demo
+
+
+- Push image to docker hub
+
+docker push bsteverink/docker-demo

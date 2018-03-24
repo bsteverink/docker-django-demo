@@ -1,0 +1,16 @@
+data/
+docker/
+http/
+
+*.xml
+
+# Skip all compiled python files
+*.pyc
+
+*.log
+
+*.DS_Store
+
+db.sqlite3
+
+.git

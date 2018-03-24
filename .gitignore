@@ -1,0 +1,71 @@
+# Skip debian packages
+*.deb
+
+# Skip all compiled python files
+*.pyc
+
+*.xlsx
+*.xlsm
+
+# ignore tmp build folder
+.tmp/
+
+# ignore angular dependencies
+bower_components/
+node_modules/
+
+# ignore sublime workspace files
+*.sublime-workspace
+*.sublime-project
+
+# ignore results of collect static
+http/
+http/static
+
+# ignore media folder
+media/
+
+# ignore jetbrains workspace
+.idea/
+
+# ignore fs store
+*.DS_store
+
+.sass-cache
+
+# ignore svn files
+.svn/
+
+# ignore env settings
+.env
+
+# ignore ruby dependencies
+infrastructure/vendor/
+infrastructure/.bundle
+
+# ignore secrets
+*.key
+*.csr
+*.pem
+
+
+# Ignore static site
+public-broadview/
+
+.ftppass
+
+# Ignore docker mysql data folder
+.data
+data/
+*.xml
+
+# Ignore jupyter changelog
+.ipynb_checkpoints
+
+# Ignore pdf files
+*.pdf
+
+
+db.sqlite3
+
+*.log

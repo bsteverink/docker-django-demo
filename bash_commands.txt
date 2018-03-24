@@ -33,3 +33,21 @@ docker run -v ${PWD}:/code/ -p 8000:8000 bsteverink/docker-demo
 - Push image to docker hub (replace user with your own):
 
 docker push bsteverink/docker-demo
+
+
+DOCKER COMPOSE
+
+- Start stack:
+
+docker-compose up
+
+
+- Rebuild images and start:
+
+docker-compose up --build
+
+
+- Execute command in container (in the context of the rest of the stack):
+
+docker-compose run webapp bash
+

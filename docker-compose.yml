@@ -1,0 +1,41 @@
+#####
+# Docker compose YAML file
+#
+# For documentation see: https://docs.docker.com/compose/yml/
+#####
+
+version: "2"
+services:
+    webapp:
+        build: .
+        #command: ["python", "app/manage.py", "runserver", "0.0.0.0:8000"]
+        command: /code/bash/entrypoints/prod_run.sh
+        volumes:
+            - .:/code
+        environment:
+            - DEBUG=true
+            - DATABASE_NAME=dockerdemo
+            - DATABASE_USER=root
+            - DATABASE_PASSWORD=mysecretpass
+            - DATABASE_HOST=database
+            - APP_NAME=dockerdemo
+        depends_on:
+            - database
+    database:
+        image: percona:5.7
+        volumes:
+            - ./data/masterdb:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=mysecretpass
+            - MYSQL_DATABASE=dockerdemo
+    nginx:
+        image: bsteverink/nginx_gunicorn
+        environment:
+            CONF_FILE: nginx.conf.no-ssl.tmpl
+            NGINX_SERVER_NAME: localhost
+        volumes:
+            - ./http:/code/http
+        ports:
+            - 80:80
+        links:
+            - webapp:webapp

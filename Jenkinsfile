@@ -33,10 +33,7 @@ node {
     withEnv(['RANCHER_URL=https://dutchrancher.in2systems.nl/v2-beta/projects/1a780']) {
         withCredentials([usernamePassword(credentialsId: 'rancher-server', usernameVariable: 'RANCHER_ACCESS_KEY', passwordVariable: 'RANCHER_SECRET_KEY')]) {
             stage('Deploy image to server') {
-                sh '''
-                    #!/bin/bash
-                    rancher-compose -f rancher/docker-compose.yml -r rancher/rancher-compose.yml -p demo up -c -d webapp
-                '''
+                sh './bash/deploy.sh'
             }
         }
     }

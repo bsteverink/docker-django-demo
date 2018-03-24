@@ -1,4 +1,4 @@
-DOCKERFILE
+#DOCKERFILE
 
 - Build docker image (replace user with your own):
 
@@ -35,7 +35,7 @@ docker run -v ${PWD}:/code/ -p 8000:8000 bsteverink/docker-demo
 docker push bsteverink/docker-demo
 
 
-DOCKER COMPOSE
+#DOCKER COMPOSE
 
 - Start stack:
 
@@ -52,7 +52,7 @@ docker-compose up --build
 docker-compose run webapp bash
 
 
-RANCHER
+#RANCHER
 
 0. Build and push docker image
 1. Start node and register with Rancher (make sure to add security groups and cloud init)
@@ -62,3 +62,9 @@ RANCHER
 5. Add LB and redirector (redirector will fail because nginx is on port 80)
 
 
+#JENKINS
+
+
+- Push to the jenkins branch to trigger build and deploy:
+
+git push

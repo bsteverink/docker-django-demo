@@ -1,0 +1,54 @@
+#####
+# Docker compose YAML file, suitable for Rancher
+#
+# For documentation see: https://docs.docker.com/compose/yml/
+#####
+
+version: '2'
+services:
+    webapp:
+        image: bsteverink/docker-demo
+        command: /code/bash/entrypoints/prod_run.sh
+        volumes:
+            - /data/docker-demo/http:/code/http
+        environment:
+            - DEBUG=true
+            - DATABASE_NAME=dockerdemo
+            - DATABASE_USER=root
+            - DATABASE_PASSWORD=mysecretpass
+            - DATABASE_HOST=database
+            - APP_NAME=dockerdemo
+        depends_on:
+            - database
+        links:
+            - database
+        stdin_open: true
+        tty: true
+        labels:
+            io.rancher.container.pull_image: always
+    database:
+        image: percona:5.7
+        volumes:
+            - /data/docker-demo/database:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=mysecretpass
+            - MYSQL_DATABASE=dockerdemo
+        stdin_open: true
+        tty: true
+        labels:
+            io.rancher.container.pull_image: always
+    nginx:
+        image: bsteverink/nginx_gunicorn
+        environment:
+            CONF_FILE: nginx.conf.no-ssl.tmpl
+            NGINX_SERVER_NAME: localhost
+        volumes:
+            - /data/docker-demo/http:/code/http
+        ports:
+            - 80:80
+        links:
+            - webapp:webapp
+        stdin_open: true
+        tty: true
+        labels:
+            io.rancher.container.pull_image: always

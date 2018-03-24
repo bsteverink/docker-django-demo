@@ -1,0 +1,17 @@
+version: '2'
+services:
+  redirector:
+    image: jamessharp/docker-nginx-https-redirect:latest
+    stdin_open: true
+    tty: true
+    ports:
+    - 80:80/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  lb:
+    image: rancher/lb-service-haproxy:v0.7.6
+    ports:
+    - 443:443/tcp
+    labels:
+      io.rancher.container.agent.role: environmentAdmin
+      io.rancher.container.create_agent: 'true'

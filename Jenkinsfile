@@ -30,4 +30,11 @@ node {
             app.push("latest")
         }
     }
+    withEnv(['RANCHER_URL=https://dutchrancher.in2systems.nl/v2-beta/projects/1a780']) {
+        withCredentials([usernamePassword(credentialsId: 'rancher-server', usernameVariable: 'RANCHER_ACCESS_KEY', passwordVariable: 'RANCHER_SECRET_KEY')]) {
+            stage('Deploy image to server') {
+                sh './bash/deploy.sh'
+            }
+        }
+    }
 }

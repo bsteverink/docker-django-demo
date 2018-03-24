@@ -7,7 +7,7 @@
 version: '2'
 services:
     webapp:
-        image: bsteverink/docker-demo
+        image: bsteverink/docker-demo:latest
         command: /code/bash/entrypoints/prod_run.sh
         volumes:
             - /data/docker-demo/http:/code/http

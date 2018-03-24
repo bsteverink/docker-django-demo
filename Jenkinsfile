@@ -30,4 +30,8 @@ node {
             app.push("latest")
         }
     }
+
+    stage('Deploy image to server') {
+        rancher-compose -f rancher/docker-compose.yml -r rancher/rancher-compose.yml -p demo up -c -d webapp    
+    }
 }

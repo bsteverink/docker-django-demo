@@ -1,0 +1,16 @@
+version: '2'
+services:
+    webapp:
+        scale: 1
+        depends_on:
+            database:
+                condition: service_healthy
+    database:
+        scale: 1
+        healthcheck:
+            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+            interval: 30s
+            timeout: 10s
+            retries: 5
+    nginx:
+        scale: 1

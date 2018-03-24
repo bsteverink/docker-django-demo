@@ -1,0 +1,25 @@
+version: '2'
+services:
+  redirector:
+    scale: 1
+    start_on_create: true
+  lb:
+    scale: 1
+    start_on_create: true
+    lb_config:
+      default_cert: star_in2systems_nl
+      port_rules:
+      - hostname: docker-demo.in2systems.nl
+        priority: 1
+        protocol: https
+        service: docker-demo/nginx
+        source_port: 443
+        target_port: 80
+    health_check:
+      healthy_threshold: 2
+      response_timeout: 2000
+      port: 42
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 2000
+      reinitializing_timeout: 60000

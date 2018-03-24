@@ -29,6 +29,10 @@ python app/manage.py runserver 0.0.0.0:8000
 
 docker run -v ${PWD}:/code/ -p 8000:8000 bsteverink/docker-demo
 
+to run in deamon mode
+
+docker run -d -v ${PWD}:/code/ -p 8000:8000 bsteverink/docker-demo
+
 
 - Push image to docker hub (replace user with your own):
 

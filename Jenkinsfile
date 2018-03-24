@@ -32,11 +32,9 @@ node {
     }
 
     stage('Deploy image to server') {
-        steps {
-            bash '''
-                #!/bin/bash
-                rancher-compose -f rancher/docker-compose.yml -r rancher/rancher-compose.yml -p demo up -c -d webapp
-            '''
-        }
+        sh '''
+            #!/bin/bash
+            rancher-compose -f rancher/docker-compose.yml -r rancher/rancher-compose.yml -p demo up -c -d webapp
+        '''
     }
 }

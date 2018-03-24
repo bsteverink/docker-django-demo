@@ -21,58 +21,58 @@ Enjoy!
 
 Build docker image (replace user with your own):
 
-`docker build -t bsteverink/docker-demo .`
+`$ docker build -t bsteverink/docker-demo .`
 
 
 Start the image in interactive console mode (replace user with your own):
 
-`docker run -it -v ${PWD}:/code/ -p 8000:8000 bsteverink/docker-demo bash`
+`$ docker run -it -v ${PWD}:/code/ -p 8000:8000 bsteverink/docker-demo bash`
 
 
 Create Django project:
 
-`mkdir app && django-admin startproject dockerdemo app/`
+`$(docker) mkdir app && django-admin startproject dockerdemo app/`
 
 
 Run migrations & create superuser:
 
-`python app/manage.py migrate && python app/manage.py createsuperuser`
+`$(docker) python app/manage.py migrate && python app/manage.py createsuperuser`
 
 
 Run development server:
 
-`python app/manage.py runserver 0.0.0.0:8000`
+`$(docker) python app/manage.py runserver 0.0.0.0:8000`
 
 
 Run docker image (replace user with your own):
 
-`docker run -v ${PWD}:/code/ -p 8000:8000 bsteverink/docker-demo`
+`$ docker run -v ${PWD}:/code/ -p 8000:8000 bsteverink/docker-demo`
 
 _to run in deamon mode:_
 
-`docker run -d -v ${PWD}:/code/ -p 8000:8000 bsteverink/docker-demo`
+`$ docker run -d -v ${PWD}:/code/ -p 8000:8000 bsteverink/docker-demo`
 
 
 Push image to docker hub (replace user with your own):
 
-`docker push bsteverink/docker-demo`
+`$ docker push bsteverink/docker-demo`
 
 
 ## DOCKER COMPOSE
 
 Start stack:
 
-`docker-compose up`
+`$ docker-compose up`
 
 
 Rebuild images and start:
 
-`docker-compose up --build`
+`$ docker-compose up --build`
 
 
 Execute command in container (in the context of the rest of the stack):
 
-`docker-compose run webapp bash`
+`$ docker-compose run webapp bash`
 
 
 ## RANCHER
@@ -87,7 +87,10 @@ Execute command in container (in the context of the rest of the stack):
 
 ## JENKINS
 
+1. Create environment API keys in Rancher
+2. Make sure rancher-compose is installed on the Jenkins server (bash/rancher-compose-install.sh)
+3. Add the Jenkins Github service plugin on Github and provide the Jenkins webhook URL for sending triggers
+4. Create a Jenkins pipeline, including API credentials (credentialsId=rancher-server)
+5. Push to the Jenkins branch to trigger build and deploy:
 
-Push to the jenkins branch to trigger build and deploy:
-
-`git push`
+`$ git push`

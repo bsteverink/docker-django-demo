@@ -19,58 +19,58 @@ Enjoy!
 
 ## DOCKERFILE
 
-- Build docker image (replace user with your own):
+*Build docker image (replace user with your own):*
 
 docker build -t bsteverink/docker-demo .
 
 
-- Start the image in interactive console mode (replace user with your own):
+*Start the image in interactive console mode (replace user with your own):*
 
 docker run -it -v ${PWD}:/code/ -p 8000:8000 bsteverink/docker-demo bash
 
 
-- Create Django project:
+*Create Django project:*
 
 mkdir app && django-admin startproject dockerdemo app/
 
 
-- Run migrations & create superuser:
+*Run migrations & create superuser:*
 
 python app/manage.py migrate && python app/manage.py createsuperuser
 
 
-- Run development server:
+*Run development server:*
 
 python app/manage.py runserver 0.0.0.0:8000
 
 
-- Run docker image (replace user with your own):
+*Run docker image (replace user with your own):*
 
 docker run -v ${PWD}:/code/ -p 8000:8000 bsteverink/docker-demo
 
-to run in deamon mode
+_to run in deamon mode:_
 
 docker run -d -v ${PWD}:/code/ -p 8000:8000 bsteverink/docker-demo
 
 
-- Push image to docker hub (replace user with your own):
+*Push image to docker hub (replace user with your own):*
 
 docker push bsteverink/docker-demo
 
 
 ## DOCKER COMPOSE
 
-- Start stack:
+*Start stack:*
 
 docker-compose up
 
 
-- Rebuild images and start:
+*Rebuild images and start:*
 
 docker-compose up --build
 
 
-- Execute command in container (in the context of the rest of the stack):
+*Execute command in container (in the context of the rest of the stack):*
 
 docker-compose run webapp bash
 
@@ -88,6 +88,6 @@ docker-compose run webapp bash
 ## JENKINS
 
 
-- Push to the jenkins branch to trigger build and deploy:
+*Push to the jenkins branch to trigger build and deploy:*
 
 git push

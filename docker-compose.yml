@@ -21,6 +21,8 @@ services:
             - APP_NAME=dockerdemo
         depends_on:
             - database
+        links:
+            - database
     database:
         image: percona:5.7
         volumes:

@@ -11,68 +11,68 @@ docker deployment. To follow my footsteps browse through the repository in the f
 Each branch has its own sections of the bash commands listed below. Follow them and you will get an empty Django project
 up and running in no time.
 
-**Please keep in mind that I use a custom NGINX/Gunicorn image that I have build. I am however not actively maintaining it
-so use at your own risk.**
+Please keep in mind that I use a custom NGINX/Gunicorn image that I have build. I am however not actively maintaining it
+so use at your own risk.
 
 Enjoy!
 
 
 ## DOCKERFILE
 
-**Build docker image (replace user with your own):**
+Build docker image (replace user with your own):
 
-docker build -t bsteverink/docker-demo .
-
-
-**Start the image in interactive console mode (replace user with your own):**
-
-docker run -it -v ${PWD}:/code/ -p 8000:8000 bsteverink/docker-demo bash
+`docker build -t bsteverink/docker-demo .`
 
 
-**Create Django project:**
+Start the image in interactive console mode (replace user with your own):
 
-mkdir app && django-admin startproject dockerdemo app/
-
-
-**Run migrations & create superuser:**
-
-python app/manage.py migrate && python app/manage.py createsuperuser
+`docker run -it -v ${PWD}:/code/ -p 8000:8000 bsteverink/docker-demo bash`
 
 
-**Run development server:**
+Create Django project:
 
-python app/manage.py runserver 0.0.0.0:8000
+`mkdir app && django-admin startproject dockerdemo app/`
 
 
-**Run docker image (replace user with your own):**
+Run migrations & create superuser:
 
-docker run -v ${PWD}:/code/ -p 8000:8000 bsteverink/docker-demo
+`python app/manage.py migrate && python app/manage.py createsuperuser`
+
+
+Run development server:
+
+`python app/manage.py runserver 0.0.0.0:8000`
+
+
+Run docker image (replace user with your own):
+
+`docker run -v ${PWD}:/code/ -p 8000:8000 bsteverink/docker-demo`
 
 _to run in deamon mode:_
 
-docker run -d -v ${PWD}:/code/ -p 8000:8000 bsteverink/docker-demo
+`docker run -d -v ${PWD}:/code/ -p 8000:8000 bsteverink/docker-demo`
 
 
-**Push image to docker hub (replace user with your own):**
+Push image to docker hub (replace user with your own):
 
-docker push bsteverink/docker-demo
+`docker push bsteverink/docker-demo`
 
 
 ## DOCKER COMPOSE
 
-**Start stack:**
+Start stack:
 
-docker-compose up
-
-
-**Rebuild images and start:**
-
-docker-compose up --build
+`docker-compose up`
 
 
-**Execute command in container (in the context of the rest of the stack):**
+Rebuild images and start:
 
-docker-compose run webapp bash
+`docker-compose up --build`
+
+
+Execute command in container (in the context of the rest of the stack):
+
+`docker-compose run webapp bash`
 
 
 ## RANCHER
@@ -88,6 +88,6 @@ docker-compose run webapp bash
 ## JENKINS
 
 
-**Push to the jenkins branch to trigger build and deploy:**
+Push to the jenkins branch to trigger build and deploy:
 
-git push
+`git push`

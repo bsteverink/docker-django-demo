@@ -4,7 +4,7 @@
 # For documentation see: https://docs.docker.com/compose/yml/
 #####
 
-version: "2"
+version: "2.1"
 services:
     webapp:
         build: .
@@ -20,7 +20,8 @@ services:
             - DATABASE_HOST=database
             - APP_NAME=dockerdemo
         depends_on:
-            - database
+            database:
+                condition: service_healthy
         links:
             - database
     database:
@@ -30,6 +31,11 @@ services:
         environment:
             - MYSQL_ROOT_PASSWORD=mysecretpass
             - MYSQL_DATABASE=dockerdemo
+        healthcheck:
+            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+            interval: 30s
+            timeout: 10s
+            retries: 5
     nginx:
         image: bsteverink/nginx_gunicorn
         environment:

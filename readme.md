@@ -94,3 +94,9 @@ Execute command in container (in the context of the rest of the stack):
 5. Push to the Jenkins branch to trigger build and deploy:
 
 `$ git push`
+
+## ANSIBLE
+
+`$ cd vagrant`
+
+`$ vagrant up`

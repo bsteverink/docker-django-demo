@@ -1,0 +1,54 @@
+---
+#########
+# Include tasks for role Docker
+#
+# This role is just concerned with installing Docker
+#
+#########
+
+- name: Add the GPG key for the official Docker repository to the system
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  tags: [Docker, install]
+
+- name: Add the Docker repository
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+    state: present
+  tags: [Docker, install]
+
+- name: Update apt cache
+  apt: update_cache=yes
+  tags: [Docker, install]
+
+- name: Remove previous Docker
+  apt: name={{ item }}-ce state=absent
+  with_items:
+      - "docker"
+      - "docker-engine"
+      - "docker.io"
+  tags: [Docker, install]
+
+- name: install Docker
+  apt: name=docker-ce=17.09.1~ce-0~ubuntu state=installed
+  tags: [Docker, install]
+
+- name: Freeze the docker version
+  command: apt-mark hold docker-ce
+  tags: [Docker, install]
+
+- name: Add sudo user to Docker group
+  user:
+      name: "{{ user_name }}"
+      append: yes
+      groups: docker
+      state: present
+  tags: [Docker, install]
+
+- name: Download docker compose
+  get_url:
+    url: https://github.com/docker/compose/releases/download/1.18.0/docker-compose-{{ ansible_system }}-{{ ansible_userspace_architecture }}
+    dest: /usr/local/bin/docker-compose
+    owner: "{{ user_name }}"
+    mode: 0700

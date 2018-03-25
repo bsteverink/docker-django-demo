@@ -1,0 +1,11 @@
+#!/bin/bash
+
+docker stop rancher-nginx
+
+docker rm rancher-nginx-old
+docker rename rancher-nginx rancher-nginx-old
+
+docker run -d --name rancher-nginx --link=rancher-server -p 80:80 \
+    --restart=unless-stopped \
+    -v /etc/rancher:/etc/nginx/conf.d:ro \
+    nginx

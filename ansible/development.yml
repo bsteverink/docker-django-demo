@@ -1,0 +1,26 @@
+---
+#########
+# DEVSTACK playbook
+#
+# This playbook will configure a machine for development purposes.
+#
+# To do this, the machine needs:
+# - python + virtual env
+# - a database
+#
+# always run playbook that contains encrypter data with ->
+#    ansible-playbook -i development devstack.yml --ask-vault-pass
+#
+# if using sudo that requires a password add:
+#   --user=username --ask-sudo-pass
+#########
+
+- name: Setup rancher
+  hosts: development
+  become: yes
+  become_user: root
+  gather_facts: true
+
+  roles:
+    -   docker
+    -   rancher

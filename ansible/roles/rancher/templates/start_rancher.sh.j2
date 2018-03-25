@@ -1,0 +1,8 @@
+#!/bin/bash
+
+docker stop rancher-server
+
+docker rm rancher-server-old
+docker rename rancher-server rancher-server-old
+
+docker run -d --restart=unless-stopped -p 8080:8080 --name=rancher-server rancher/server

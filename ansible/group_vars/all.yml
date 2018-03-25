@@ -1,0 +1,6 @@
+---
+# Variables that apply to all nodes
+
+# Main user name for application user
+user_name: root
+host_name: localhost

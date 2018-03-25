@@ -8,8 +8,8 @@ version: "2.1"
 services:
     webapp:
         build: .
-        #command: ["python", "app/manage.py", "runserver", "0.0.0.0:8000"]
-        command: /code/bash/entrypoints/prod_run.sh
+        command: ["python", "app/manage.py", "runserver", "0.0.0.0:8000"]
+        #command: /code/bash/entrypoints/prod_run.sh
         volumes:
             - .:/code
         environment:
@@ -22,6 +22,8 @@ services:
         depends_on:
             database:
                 condition: service_healthy
+        ports:
+            - 8000:8000
         links:
             - database
     database:
@@ -33,7 +35,7 @@ services:
             - MYSQL_DATABASE=dockerdemo
         healthcheck:
             test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-            interval: 30s
+            interval: 5s
             timeout: 10s
             retries: 5
     nginx:

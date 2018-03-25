@@ -2,4 +2,5 @@
 
 echo 'Testing image: '$1
 
-python app/manage.py test
+cd app
+python manage.py test

@@ -60,7 +60,7 @@ docker-compose run webapp bash
 
 0. Build and push docker image
 1. Start node and register with Rancher (make sure to add security groups and cloud init)
-2. Import docker-compose and start stack
+2. Import docker-compose and start stack, make sure to name the stack docker-demo
 3. Create superuser
 4. Show upgrade with allowed hosts
 5. Add LB and redirector (redirector will fail because nginx is on port 80)

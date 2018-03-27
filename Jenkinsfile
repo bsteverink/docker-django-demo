@@ -16,7 +16,7 @@ node {
 
     stage('Test image') {
         app.inside {
-            sh './bash/test.sh'
+            /*sh './bash/test.sh'*/
         }
     }
 

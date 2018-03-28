@@ -1,12 +1,13 @@
 # Docker Django development and deployment demo
 
-The branches of this repository are structured to follow the development steps that I have taken before arriving at automated 
+The branches of this repository are structured to follow the development steps that I have taken before arriving at automated
 docker deployment. To follow my footsteps browse through the repository in the following order:
 
-1. docker
-2. docker-compose
-3. rancher
-4. jenkins
+1. Docker
+2. Docker-compose
+3. Rancher
+4. Jenkins
+5. Ansible
 
 Each branch has its own sections of the bash commands listed below. Follow them and you will get an empty Django project
 up and running in no time.

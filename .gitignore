@@ -69,3 +69,5 @@ data/
 db.sqlite3
 
 *.log
+
+.vagrant

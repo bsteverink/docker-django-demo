@@ -28,6 +28,7 @@
       - "docker"
       - "docker-engine"
       - "docker.io"
+  ignore_errors: yes      
   tags: [Docker, install]
 
 - name: install Docker
